@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>HISTORIAL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <div class="oro">
+            
+        </div>
+        
+        <div class="verde">
+            <div class="escudos">
+            <img src="img/uaemex.png" width="200px" height="150px" alt="uaem" />  
+            </div>
+        </div>
+        
+        <style>
+            
+           *
+            {
+                margin: 0;
+                padding: 0;
+            }
+            .verde
+            {
+               background: green;
+               width: 100%;
+               height: 90px;
+            }
+            
+            .verde2
+            {
+               background: green;
+               width: 100%;
+               height: 50px;
+               margin: 175px 0 0 0;
+            }
+            
+            
+            .oro
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 10px;
+            }
+            
+            .oro2
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 7px;
+            }
+            
+            .escudos
+            {
+                width: 40%;
+                margin: 0 0 0 10px;
+                position: relative;
+                padding: 20px 0 0 0;
+            }
+            
+        </style>
+        
+        <center>
+            <h1>HISTORIAL</h1>
+            <style>
+                body
+                {
+                    color: blue;
+                    background:gainsboro;
+                }
+                h1
+                {
+                    font-family: 'Oswald', sans-serif;
+                    color:dimgray;
+                    margin: 110px 0 0 0;
+                }
+                
+                .botton1
+                {
+                    color: white;
+                    background: black;
+                    border-radius: 15%;
+                    margin: 0 15px 0 0;
+                }
+                
+                
+                .nombre
+                {
+                    color: black;
+                    text-align: center;
+                    font-family: 'Oswald', sans-serif;
+                }
+
+            </style>
+            <h:link class="link" outcome="listaHistorial" value="Ver lista de Historiales" /> <br />
+        </center>
+
+        <h:form id ="formInsertar">
+            <center> 
+                <p:panelGrid columns="2"> 
+                    <p:outputLabel class="nombre" value="Nombre de la enfermedad:"/>
+                    <p:inputText value="#{historialesBean.historial.tipoEnfermedad}"/> 
+                    <p:outputLabel class="nombre" value="Descripción:"/>
+                    <p:inputText value="#{historialesBean.historial.descripcion}"/>  
+                     <p:outputLabel class="nombre" value="Entrada:"/>
+                     <p:calendar value="#{historialesBean.historial.entrada}"/> 
+                     <p:outputLabel class="nombre" value="Salida:"/>
+                     <p:calendar value="#{historialesBean.historial.salida}"/> 
+                      
+                 </p:panelGrid> 
+                
+                <br />
+                
+                <p:growl id="growl" life="5000"/>
+                <p:commandButton class="botton1" actionListener="#{historialesBean.insertar()}"
+                                 value="Agregar" update="growl"/> 
+            </center>
+        </h:form>
+        
+        <div class="verde2">
+            
+        </div>
+        
+        <div class="oro2">
+            
+        </div>
+        
+    </h:body>
+</html>

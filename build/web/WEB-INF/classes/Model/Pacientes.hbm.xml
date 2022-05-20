@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/09/2021 08:00:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Pacientes" table="pacientes" catalog="prueba" optimistic-lock="version">
+        <id name="idPaciente" type="java.lang.Integer">
+            <column name="idPaciente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="historiales" class="Model.Historiales" fetch="select">
+            <column name="idHistorial" />
+        </many-to-one>
+        <many-to-one name="hospitales" class="Model.Hospitales" fetch="select">
+            <column name="idHospital" />
+        </many-to-one>
+        <property name="nombrePaciente" type="string">
+            <column name="nombrePaciente" length="25" />
+        </property>
+        <property name="apaternoPaciente" type="string">
+            <column name="aPaternoPaciente" length="25" />
+        </property>
+        <property name="amaternoPaciente" type="string">
+            <column name="aMaternoPaciente" length="25" />
+        </property>
+        <property name="sexoPaciente" type="string">
+            <column name="sexoPaciente" length="1" />
+        </property>
+        <property name="edadPaciente" type="java.lang.Integer">
+            <column name="edadPaciente" />
+        </property>
+        <property name="telefonoaciente" type="string">
+            <column name="telefonoaciente" length="12" />
+        </property>
+        <property name="direccionPaciente" type="string">
+            <column name="direccionPaciente" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

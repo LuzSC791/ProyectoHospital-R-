@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Hospitales</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <div class="oro">
+            
+        </div>
+        
+        <div class="verde">
+            <div class="escudos">
+            <img src="img/uaemex.png" width="200px" height="150px" alt="uaem" />  
+            </div>
+        </div>
+        
+        <center>
+            <h1>HOSPITALES</h1>
+        </center>
+        
+        <style>
+            
+            *
+            {
+                margin: 0;
+                padding: 0;
+            }
+            .verde
+            {
+               background: green;
+               width: 100%;
+               height: 90px;
+            }
+            
+            .verde2
+            {
+               background: green;
+               width: 100%;
+               height: 50px;
+               margin: 227px 0 0 0;
+            }
+            
+            
+            .oro
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 10px;
+            }
+            
+            .oro2
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 7px;
+            }
+            
+            .escudos
+            {
+                width: 40%;
+                margin: 0 0 0 10px;
+                position: relative;
+                padding: 20px 0 0 0;
+            }
+            
+        </style>
+        
+        
+        
+        
+        <style>
+                body
+                {
+                    color: blue;
+                    background:gainsboro;
+                }
+                h1
+                {
+                    font-family: 'Oswald', sans-serif;
+                    color:dimgray;
+                    margin: 50px 0 0 0;
+                }
+                
+                .botton1
+                {
+                    color: white;
+                    background-color: black;
+                    border-radius: 15%;
+                    margin: 0 15px 0 0;
+                }
+                
+                
+                .nombre
+                {
+                    color: black;
+                    text-align: center;
+                    font-family: 'Oswald', sans-serif;
+                }
+
+            </style>
+        
+        <h:form id="formMostrar">
+            
+            <h5>DESCARGAR TABLA</h5>
+             <h:commandLink>
+                 <h:graphicImage url="img/excel.png" width="80px" height="60px" />
+                 <p:dataExporter type="xls" target="tbl" fileName=" Registro de hospitales"/>
+             </h:commandLink>
+             
+             <h:commandLink>
+                <h:graphicImage url="img/pdf.png" width="60px" height="60px"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="Registro de hospitales"/>
+             </h:commandLink>
+            
+            <p:dataTable id="tbl" var="per" value="#{hospitalesBean.hospitales}"
+                         emptyMessage="No hay registros"
+                         paginator="true" rows="10" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport}
+                         {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+                         {RowsPerPageDropdown}" rowsPerPageTemplate="5">
+                
+                <p:column headerText="Id" filterBy="#{per.idHospital}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.idHospital}"/> 
+                </p:column>
+                
+                <p:column headerText="Numero" filterBy="#{per.numeroHospital}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.numeroHospital}"/> 
+                </p:column>
+                
+                <p:column headerText="Nombre" filterBy="#{per.nombrHospital}" filterStyle="width:100px" filterMatchMode="contains">
+                    <h:outputText value="#{per.nombrHospital}"/> 
+                </p:column>
+                
+                <p:column headerText="Direccion" filterBy="#{per.direccionHospital}" filterStyle="width:150px" filterMatchMode="contains">
+                    <h:outputText value="#{per.direccionHospital}"/>
+                </p:column>
+                
+                <p:column headerText="Telefono" filterBy="#{per.telefonoHospital}" filterStyle="width:130px" filterMatchMode="contains">
+                    <h:outputText value="#{per.telefonoHospital}"/>
+                </p:column>
+                
+                <p:column headerText="Tipo de hospital" filterBy="#{per.tipoHospital}" filterStyle="width:130px" filterMatchMode="contains">
+                    <h:outputText value="#{per.tipoHospital}"/>
+                </p:column>
+                
+                <p:column exportable="false" headerText="Modifica">
+                    <p:commandButton class="botton1" value="Editar" onclick="PF('dlgmodificar').show();"
+                                     update=":formModificar">
+                        <f:setPropertyActionListener target="#{hospitalesBean.hospital}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>
+                
+                <p:column exportable="false" headerText="Elimina">
+                    <p:commandButton class="botton1" value="Eliminar" onclick="PF('dlgeliminar').show();">
+                        <f:setPropertyActionListener target="#{hospitalesBean.hospital}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>    
+        
+        <p:dialog id="dlg" header="Modificar hospital" showEffect="explode"
+                  hideEffect="bounce" widgetVar="dlgmodificar" modal="true"
+                  resizable="false" minWidth="200">
+            <h:form id="formModificar">
+                <p:panelGrid id="panel" columns="2"> 
+                    <p:outputLabel class="nombre" value="Numero de Hospital:"/>
+                    <p:inputText class="box" value="#{hospitalesBean.hospital.numeroHospital}"/> 
+                    <p:outputLabel class="nombre" value="Nombre Hospital:"/>
+                    <p:inputText class="box" value="#{hospitalesBean.hospital.nombrHospital}"/>  
+                     <p:outputLabel class="nombre" value="Dirección:"/>
+                     <p:inputText class="box" value="#{hospitalesBean.hospital.direccionHospital}"/>  
+                     <p:outputLabel class="nombre" value="Telefono:"/>
+                     <p:inputText class="box" value="#{hospitalesBean.hospital.telefonoHospital}"/>  
+                     <p:outputLabel class="nombre" value="Tipo de Hospital:"/>
+                     <p:inputText class="box" value="#{hospitalesBean.hospital.tipoHospital}"/> 
+    
+                 </p:panelGrid> 
+                
+                <p:commandButton actionListener="#{hospitalesBean.modificar()}"
+                                 value="Modificar hospital" update=":formMostrar"
+                                 onclick="PF('dlgmodificar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
+        
+        <p:dialog id="dlg2" header="Eliminar" showEffect="explode" hideEffect="bounce" 
+                  widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
+            <h:form id="forEliminar">
+                <p:outputLabel value="¿Deseas eliminar el registro?"/>
+                <p:commandButton actionListener="#{hospitalesBean.eliminar()}"
+                                 value="si" update=":formMostrar"
+                                 onclick="PF('dlgeliminar').hide();"/>
+                <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
+        
+        <div class="verde2">
+            
+        </div>
+        
+        <div class="oro2">
+            
+        </div>
+        
+    </h:body>
+</html>

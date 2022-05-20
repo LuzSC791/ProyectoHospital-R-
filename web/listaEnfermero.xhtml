@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Enfermeros</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <div class="oro">
+            
+        </div>
+        
+        <div class="verde">
+            <div class="escudos">
+            <img src="img/uaemex.png" width="200px" height="150px" alt="uaem" />  
+            </div>
+        </div>
+        
+        <center>
+            <h1>ENFERMEROS</h1>
+        </center>
+        
+        <style>
+            
+            *
+            {
+                margin: 0;
+                padding: 0;
+            }
+            .verde
+            {
+               background: green;
+               width: 100%;
+               height: 90px;
+            }
+            
+            .verde2
+            {
+               background: green;
+               width: 100%;
+               height: 50px;
+               margin: 227px 0 0 0;
+            }
+            
+            
+            .oro
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 10px;
+            }
+            
+            .oro2
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 7px;
+            }
+            
+            .escudos
+            {
+                width: 40%;
+                margin: 0 0 0 10px;
+                position: relative;
+                padding: 20px 0 0 0;
+            }
+            
+        </style>
+        
+        
+        
+        
+        <style>
+                body
+                {
+                    color: blue;
+                    background:gainsboro;
+                }
+                h1
+                {
+                    font-family: 'Oswald', sans-serif;
+                    color:dimgray;
+                    margin: 50px 0 0 0;
+                }
+                
+                .botton1
+                {
+                    color: white;
+                    background-color: black;
+                    border-radius: 15%;
+                    margin: 0 15px 0 0;
+                }
+                
+                
+                .nombre
+                {
+                    color: black;
+                    text-align: center;
+                    font-family: 'Oswald', sans-serif;
+                }
+
+            </style>
+        
+        <h:form id="formMostrar">
+            
+            <h5>DESCARGAR TABLA</h5>
+             <h:commandLink>
+                 <h:graphicImage url="img/excel.png" width="80px" height="60px" />
+                 <p:dataExporter type="xls" target="tbl" fileName=" Registro de enfermeros"/>
+             </h:commandLink>
+             
+             <h:commandLink>
+                <h:graphicImage url="img/pdf.png" width="60px" height="60px"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="Registro de enfermeros"/>
+             </h:commandLink>
+            
+            <p:dataTable id="tbl" var="per" value="#{enfermerosBean.enfermeros}"
+                         emptyMessage="No hay registros"
+                         paginator="true" rows="10" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport}
+                         {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+                         {RowsPerPageDropdown}" rowsPerPageTemplate="5">
+                
+                <p:column headerText="Id" filterBy="#{per.idEnfermero}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.idEnfermero}"/> 
+                </p:column>
+                
+                <p:column headerText="Nombre" filterBy="#{per.nombreEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.nombreEnfermero}"/> 
+                </p:column>
+                
+                <p:column headerText="Apellido paterno" filterBy="#{per.apaternoEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.apaternoEnfermero}"/>
+                </p:column>
+                
+                
+                <p:column headerText="Apellido materno" filterBy="#{per.amaternoEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.amaternoEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Sexo" filterBy="#{per.sexoEnfermero}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.sexoEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Edad" filterBy="#{per.edadEnfermero}" filterStyle="width:30px" filterMatchMode="contains">
+                    <h:outputText value="#{per.edadEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Telefono" filterBy="#{per.telefonoEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.telefonoEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Direccion" filterBy="#{per.direccionEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.direccionEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Correo" filterBy="#{per.correoEnfermero}" filterStyle="width:70px" filterMatchMode="contains">
+                    <h:outputText value="#{per.correoEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Sueldo" filterBy="#{per.sueldoEnfermero}" filterStyle="width:60px" filterMatchMode="contains">
+                    <h:outputText value="#{per.sueldoEnfermero}"/>
+                </p:column>
+                
+                <p:column headerText="Hospital" filterBy="#{per.hospitales.idHospital}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.hospitales.idHospital}"/>
+                </p:column>
+                
+                <p:column headerText="Area" filterBy="#{per.areas.idArea}" filterStyle="width:20px" filterMatchMode="contains">
+                    <h:outputText value="#{per.areas.idArea}"/>
+                </p:column>
+                
+                
+                <p:column exportable="false" headerText="Modifica">
+                    <p:commandButton class="botton1" value="Editar" onclick="PF('dlgmodificar').show();"
+                                     update=":formModificar">
+                        <f:setPropertyActionListener target="#{enfermerosBean.enfermero}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>
+                
+                <p:column exportable="false" headerText="Elimina">
+                    <p:commandButton class="botton1" value="Eliminar" onclick="PF('dlgeliminar').show();">
+                        <f:setPropertyActionListener target="#{enfermerosBean.enfermero}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>    
+        
+        <p:dialog id="dlg" header="Modificar enfermero" showEffect="explode"
+                  hideEffect="bounce" widgetVar="dlgmodificar" modal="true"
+                  resizable="false" minWidth="200">
+            <h:form id="formModificar">
+                <p:panelGrid columns="2"> 
+                    <p:outputLabel class="nombre" value="Nombre Enfermero:"/>
+                    <p:inputText value="#{enfermerosBean.enfermero.nombreEnfermero}"/> 
+                    <p:outputLabel class="nombre" value="Apellido Paterno:"/>
+                    <p:inputText value="#{enfermerosBean.enfermero.apaternoEnfermero}"/> 
+                    <p:outputLabel class="nombre" value="Apellido Materno:"/>
+                    <p:inputText value="#{enfermerosBean.enfermero.amaternoEnfermero}"/> 
+                    <p:outputLabel class="nombre" value="Sexo:"/>
+                    <p:inputText value="#{enfermerosBean.enfermero.sexoEnfermero}"/>  
+                     <p:outputLabel class="nombre" value="Edad:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.edadEnfermero}"/>  
+                     <p:outputLabel class="nombre" value="Telefono:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.telefonoEnfermero}"/>  
+                     <p:outputLabel class="nombre" value="Dirección:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.direccionEnfermero}"/>  
+                     <p:outputLabel class="nombre" value="Correo:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.correoEnfermero}"/>  
+                     <p:outputLabel class="nombre" value="Tipo de enfermero:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.tipoEnfermero}"/> 
+                     <p:outputLabel class="nombre" value="Sueldo:"/>
+                     <p:inputText value="#{enfermerosBean.enfermero.sueldoEnfermero}"/>  
+                      
+                 </p:panelGrid> 
+                
+                <p:commandButton actionListener="#{enfermerosBean.modificar()}"
+                                 value="Modificar enfermero" update=":formMostrar"
+                                 onclick="PF('dlgmodificar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
+        
+        <p:dialog id="dlg2" header="Eliminar" showEffect="explode" hideEffect="bounce" 
+                  widgetVar="dlgeliminar" modal="true" resizable="false" minWidth="200">
+            <h:form id="forEliminar">
+                <p:outputLabel value="¿Deseas eliminar el registro?"/>
+                <p:commandButton actionListener="#{enfermerosBean.eliminar()}"
+                                 value="si" update=":formMostrar"
+                                 onclick="PF('dlgeliminar').hide();"/>
+                <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+            </h:form>
+        </p:dialog>
+        
+        
+        <div class="verde2">
+            
+        </div>
+        
+        <div class="oro2">
+            
+        </div>
+        
+    </h:body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/09/2021 08:00:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Enfermeros" table="enfermeros" catalog="prueba" optimistic-lock="version">
+        <id name="idEnfermero" type="java.lang.Integer">
+            <column name="idEnfermero" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="areas" class="Model.Areas" fetch="select">
+            <column name="idArea" />
+        </many-to-one>
+        <many-to-one name="hospitales" class="Model.Hospitales" fetch="select">
+            <column name="idHospital" />
+        </many-to-one>
+        <property name="nombreEnfermero" type="string">
+            <column name="nombreEnfermero" length="25" />
+        </property>
+        <property name="apaternoEnfermero" type="string">
+            <column name="aPaternoEnfermero" length="25" />
+        </property>
+        <property name="amaternoEnfermero" type="string">
+            <column name="aMaternoEnfermero" length="25" />
+        </property>
+        <property name="sexoEnfermero" type="string">
+            <column name="sexoEnfermero" length="1" />
+        </property>
+        <property name="edadEnfermero" type="java.lang.Integer">
+            <column name="edadEnfermero" />
+        </property>
+        <property name="telefonoEnfermero" type="string">
+            <column name="telefonoEnfermero" length="12" />
+        </property>
+        <property name="direccionEnfermero" type="string">
+            <column name="direccionEnfermero" length="65535" />
+        </property>
+        <property name="correoEnfermero" type="string">
+            <column name="correoEnfermero" length="35" />
+        </property>
+        <property name="tipoEnfermero" type="string">
+            <column name="tipoEnfermero" length="25" />
+        </property>
+        <property name="sueldoEnfermero" type="java.lang.Double">
+            <column name="sueldoEnfermero" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

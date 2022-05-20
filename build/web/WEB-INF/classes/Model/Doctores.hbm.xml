@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/09/2021 08:00:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Doctores" table="doctores" catalog="prueba" optimistic-lock="version">
+        <id name="idDoctor" type="java.lang.Integer">
+            <column name="idDoctor" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="areas" class="Model.Areas" fetch="select">
+            <column name="idArea" />
+        </many-to-one>
+        <many-to-one name="hospitales" class="Model.Hospitales" fetch="select">
+            <column name="idHospital" />
+        </many-to-one>
+        <property name="nombreDoctor" type="string">
+            <column name="nombreDoctor" length="25" />
+        </property>
+        <property name="apaternoDoctor" type="string">
+            <column name="aPaternoDoctor" length="25" />
+        </property>
+        <property name="amaternoDoctor" type="string">
+            <column name="aMaternoDoctor" length="25" />
+        </property>
+        <property name="sexoDoctor" type="string">
+            <column name="sexoDoctor" length="1" />
+        </property>
+        <property name="edadDoctor" type="java.lang.Integer">
+            <column name="edadDoctor" />
+        </property>
+        <property name="telefonoDoctor" type="string">
+            <column name="telefonoDoctor" length="12" />
+        </property>
+        <property name="direccionDoctor" type="string">
+            <column name="direccionDoctor" length="65535" />
+        </property>
+        <property name="correoDoctor" type="string">
+            <column name="correoDoctor" length="35" />
+        </property>
+        <property name="sueldoDoctor" type="java.lang.Double">
+            <column name="sueldoDoctor" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

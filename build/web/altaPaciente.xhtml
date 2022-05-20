@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PACIENTE</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <div class="oro">
+            
+        </div>
+        
+        <div class="verde">
+            <div class="escudos">
+            <img src="img/uaemex.png" width="200px" height="150px" alt="uaem" />  
+            </div>
+        </div>
+
+        <style>
+            
+           *
+            {
+                margin: 0;
+                padding: 0;
+            }
+            .verde
+            {
+               background: green;
+               width: 100%;
+               height: 90px;
+            }
+            
+            .verde2
+            {
+               background: green;
+               width: 100%;
+               height: 50px;
+               margin: 57px 0 0 0;
+            }
+            
+            
+            .oro
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 10px;
+            }
+            
+            .oro2
+            {
+                background: goldenrod;
+                width: 100%;
+                height: 7px;
+            }
+            
+            .escudos
+            {
+                width: 40%;
+                margin: 0 0 0 10px;
+                position: relative;
+                padding: 20px 0 0 0;
+            }         
+            
+        </style>
+  
+        
+        <center>
+            <h1>PACIENTE</h1>
+            <style>
+                body
+                {
+                    color: blue;
+                    background:gainsboro;  
+                }
+                h1
+                {
+                    font-family: 'Oswald', sans-serif;
+                    color:dimgray;
+                    margin: 50px 0 0 0;
+                }
+                
+                .botton1
+                {
+                    color: white;
+                    background: black;
+                    border-radius: 15%;
+                    margin: 0 15px 0 0;
+                }
+                
+                
+                .nombre
+                {
+                    color: black;
+                    text-align: center;
+                    font-family: 'Oswald', sans-serif;
+                }
+
+            </style>
+            <h:link class="link" outcome="listaPaciente" value="Ver lista de pacientes" /> <br />
+        </center>
+        <br />
+        
+        <h:form id ="formInsertar">
+            <center> 
+                <p:panelGrid columns="2"> 
+                    <p:outputLabel class="nombre" value="Nombre Paciente:"/>
+                    <p:inputText value="#{pacientesBean.paciente.nombrePaciente}"/> 
+                    <p:outputLabel class="nombre" value="Apellido Paterno:"/>
+                    <p:inputText value="#{pacientesBean.paciente.apaternoPaciente}"/> 
+                    <p:outputLabel class="nombre" value="Apellido Materno:"/>
+                    <p:inputText value="#{pacientesBean.paciente.amaternoPaciente}"/> 
+                    <p:outputLabel class="nombre" value="Sexo:"/>
+                    <p:inputText value="#{pacientesBean.paciente.sexoPaciente}"/>  
+                     <p:outputLabel class="nombre" value="Edad:"/>
+                     <p:inputText value="#{pacientesBean.paciente.edadPaciente}"/>  
+                     <p:outputLabel class="nombre" value="Telefono:"/>
+                     <p:inputText value="#{pacientesBean.paciente.telefonoaciente}"/>  
+                     <p:outputLabel class="nombre" value="Dirección:"/>
+                     <p:inputText value="#{pacientesBean.paciente.direccionPaciente}"/> 
+                     
+                     <p:outputLabel class="nombre" value="Historial:"/>
+                     <p:inputText value="#{pacientesBean.paciente.historiales.idHistorial}"/> 
+                     <p:outputLabel class="nombre" value="Hospital:"/>
+                     <p:inputText value="#{pacientesBean.paciente.hospitales.idHospital}"/> 
+                     
+                 </p:panelGrid> 
+                
+                <br />
+                
+                <p:growl id="growl" life="5000"/>
+                <p:commandButton class="botton1" actionListener="#{pacientesBean.insertar()}"
+                                 value="Agregar" update="growl"/> 
+            </center>
+        </h:form>
+        
+        <div class="verde2">
+            
+        </div>
+        
+        <div class="oro2">
+            
+        </div>
+        
+    </h:body>
+
+</html>

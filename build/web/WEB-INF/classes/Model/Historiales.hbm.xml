@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/09/2021 08:00:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Historiales" table="historiales" catalog="prueba" optimistic-lock="version">
+        <id name="idHistorial" type="java.lang.Integer">
+            <column name="idHistorial" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoEnfermedad" type="string">
+            <column name="tipoEnfermedad" length="50" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="65535" />
+        </property>
+        <property name="entrada" type="timestamp">
+            <column name="entrada" length="19" />
+        </property>
+        <property name="salida" type="timestamp">
+            <column name="salida" length="19" />
+        </property>
+        <set name="pacienteses" table="pacientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idHistorial" />
+            </key>
+            <one-to-many class="Model.Pacientes" />
+        </set>
+    </class>
+</hibernate-mapping>

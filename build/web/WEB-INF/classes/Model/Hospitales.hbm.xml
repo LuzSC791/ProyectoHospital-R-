@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/09/2021 08:00:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Hospitales" table="hospitales" catalog="prueba" optimistic-lock="version">
+        <id name="idHospital" type="java.lang.Integer">
+            <column name="idHospital" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroHospital" type="java.lang.Integer">
+            <column name="numeroHospital" />
+        </property>
+        <property name="nombrHospital" type="string">
+            <column name="nombrHospital" length="50" />
+        </property>
+        <property name="direccionHospital" type="string">
+            <column name="direccionHospital" length="65535" />
+        </property>
+        <property name="telefonoHospital" type="string">
+            <column name="telefonoHospital" length="12" />
+        </property>
+        <property name="tipoHospital" type="string">
+            <column name="tipoHospital" length="10" />
+        </property>
+        <set name="doctoreses" table="doctores" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idHospital" />
+            </key>
+            <one-to-many class="Model.Doctores" />
+        </set>
+        <set name="enfermeroses" table="enfermeros" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idHospital" />
+            </key>
+            <one-to-many class="Model.Enfermeros" />
+        </set>
+        <set name="pacienteses" table="pacientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idHospital" />
+            </key>
+            <one-to-many class="Model.Pacientes" />
+        </set>
+    </class>
+</hibernate-mapping>
